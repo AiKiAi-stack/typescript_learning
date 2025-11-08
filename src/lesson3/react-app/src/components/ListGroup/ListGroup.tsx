@@ -1,20 +1,35 @@
 import type { MouseEvent } from "react";
 import { useState } from "react";
+import styled from "styled-components";
+
+const List = styled.ul`
+  list-style: none;
+  padding: 0;
+`;
+
+interface ListItemProp {
+  active: boolean
+  hello: string
+}
+//styled.li<ListItemProp> like implements interface
+const ListItem = styled.li<ListItemProp>`
+  padding: 5px 0;
+  background: ${props => props.active ? 'blue' : 'none'}}
+`;
 
 // { items: [], heading: string}
 interface ListGroupProperties {
   items: string[];
   heading: string;
   // like onClick
-  onSelectItem: (item : string) => void;
+  onSelectItem: (item: string) => void;
 }
 
-function ListGroup({items, heading, onSelectItem}: ListGroupProperties) {
-  
+function ListGroup({ items, heading, onSelectItem }: ListGroupProperties) {
   // Hook : is a func, which allows us use inner feature in react
   // val1: variable    val2: updater function
   // useState(para1)   para1: default value
-  const [selectedIdx, setSelectedIdx] = useState(-1)
+  const [selectedIdx, setSelectedIdx] = useState(-1);
   //   item = [];
 
   /*   if (item.length === 0)
@@ -35,6 +50,7 @@ function ListGroup({items, heading, onSelectItem}: ListGroupProperties) {
   } */
 
   // Event Handler, a kind of onClick result
+
   const handleClick = (event: MouseEvent) => {
     console.log(event);
   };
@@ -42,24 +58,21 @@ function ListGroup({items, heading, onSelectItem}: ListGroupProperties) {
     <>
       <h1>{heading}</h1>
       {items.length === 0 ? <p>No item here</p> : null}
-      <ul className="list-group">
+      <List>
         {items.map((item, index) => (
-          <li
-            className={
-              selectedIdx === index
-                ? "list-group-item active"
-                : "list-group-item"
-            }
+          <ListItem
+            hello="hello world"
+            active = {selectedIdx === index}
             key={item}
             onClick={() => {
               setSelectedIdx(index);
-              onSelectItem(item)
+              onSelectItem(item);
             }}
           >
             {item}
-          </li>
+          </ListItem>
         ))}
-      </ul>
+      </List>
     </>
   );
 }
