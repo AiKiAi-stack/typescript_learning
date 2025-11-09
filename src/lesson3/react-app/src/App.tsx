@@ -120,7 +120,7 @@ function App4() {
   
 } */
 
-function App() {
+/* function App() {
 
   const [arrs,setArr] = useState(["1","2"])
 
@@ -139,6 +139,34 @@ function App() {
   return (<div>
     
   </div>)
-}
+} */
+
+
+  /* 
+  Expandable Text Practice
+  */
+import Expandable from "./components/Expandable";
+const App5 = () => {
+  //use lorem100
+  let content = "helloWorld"
+  return (
+    <div>
+      <Expandable maxChar={12} >
+        {content}
+      </Expandable>
+      
+    </div>
+  );
+};
+
+import Form from "./components/Form";
+const App = () => {
+  return (
+    <div>
+      <Form></Form>
+    </div>
+  );
+};
+
 
 export default App;

@@ -3,7 +3,7 @@ import { useState } from "react";
 interface Props {
   color?: string;
   children: string;
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 const Button = ({ color = "gray", children, onClick }: Props) => {
